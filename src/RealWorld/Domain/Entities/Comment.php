@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Entities;
+namespace RealWorld\Domain\Entities;
 
 final class Comment
 {
