@@ -17,7 +17,7 @@ final class Profile
     /** @var bool */
     protected $following = false;
 
-    public function setUsername(string $username): void
+    public function __construct(string $username)
     {
         $this->username = $username;
     }

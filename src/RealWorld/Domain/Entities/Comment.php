@@ -11,20 +11,16 @@ final class Comment
     /** @var Profile */
     protected $author;
 
-    public function setBody(string $body): void
+    public function __construct(string $body, Profile $author)
     {
         $this->body = $body;
+        $this->author = $author;
     }
     
     public function getBody(): string
     {
         return $this->body;
     }
-
-    public function setAuthor(Profile $author): void
-    {
-        $this->author = $author;
-    } 
 
     public function getAuthor(): Profile
     {

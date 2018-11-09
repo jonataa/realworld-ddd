@@ -23,9 +23,14 @@ final class Article
     /** @var Profile */
     protected $author;
 
-    public function setTitle(string $title): void
-    {
+    public function __construct(
+        string $title, 
+        string $description,
+        string $body
+    ) {
         $this->title = $title;
+        $this->description = $description;
+        $this->body = $body;
     }
 
     public function getTitle(): string
@@ -33,19 +38,9 @@ final class Article
         return $this->title;
     }
 
-    public function setDescription(string $description): void
-    {
-        $this->description = $description;
-    }
-
     public function getDescription(): string
     {
         return $this->description;
-    }
-
-    public function setBody(string $body): void
-    {
-        $this->body = $body;
     }
 
     public function getBody(): string
@@ -63,9 +58,14 @@ final class Article
         return $this->tags;
     }
 
-    public function setFavorited(bool $favorited): void
+    public function favorite(): void
     {
-        $this->favorited = $favorited;
+        $this->favorited = true;
+    }
+
+    public function unfavorite(): void
+    {
+        $this->favorited = false;
     }
 
     public function isFavorited(): bool
@@ -76,9 +76,9 @@ final class Article
     public function setAuthor(Profile $author): void
     {
         $this->author = $author;
-    }
+    } 
 
-    public function getAuthro(): Profile
+    public function getAuthor(): Profile
     {
         return $this->author;
     }
