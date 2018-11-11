@@ -1,9 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RealWorld\Domain\Entities;
 
 final class Article
 {
+
+    /** @var string */
+    protected $slug;
 
     /** @var string */
     protected $title;
@@ -23,11 +28,13 @@ final class Article
     /** @var Profile */
     protected $author;
 
-    public function __construct(
+    public function __construct(   
+        string $slug,   
         string $title, 
         string $description,
         string $body
     ) {
+        $this->slug = $slug;
         $this->title = $title;
         $this->description = $description;
         $this->body = $body;
@@ -81,6 +88,11 @@ final class Article
     public function getAuthor(): Profile
     {
         return $this->author;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
     }
 
 }
