@@ -9,12 +9,14 @@ final class ArticleFactory
 
   public static function createFromArray(array $data): Article
   {
-    return new Article(
+    $article = new Article(
       $data['slug'], 
       $data['title'], 
       $data['description'], 
       $data['body']
-    );  
+    );
+
+    return $article;
   }
 
 }

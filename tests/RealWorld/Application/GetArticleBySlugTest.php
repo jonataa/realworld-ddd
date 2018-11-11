@@ -33,11 +33,26 @@ class GetArticleBySlugTest extends TestCase
         $this->query = new GetArticleBySlug($repository);
     }
 
-    public function testGetOneArticleBySlug()
+    public function testGetFooBarArticleBySlug()
     {
         $article = $this->query->handle('foobar');
 
         $this->assertInstanceOf(Article::class, $article);
+        $this->assertEquals($article->getTitle(), 'Foo Bar');
+        $this->assertEquals($article->getSlug(), 'foobar');
+        $this->assertEquals($article->getDescription(), 'Foo bar description.');
+        $this->assertEquals($article->getBody(), 'Foo bar long text.');
+    }
+
+    public function testGetFizzBuzzArticleBySlug()
+    {
+        $article = $this->query->handle('fizzbuzz');
+
+        $this->assertInstanceOf(Article::class, $article);
+        $this->assertEquals($article->getTitle(), 'Fizz Buzz');
+        $this->assertEquals($article->getSlug(), 'fizzbuzz');
+        $this->assertEquals($article->getDescription(), 'Fizz buzz description.');
+        $this->assertEquals($article->getBody(), 'Fizz buzz long text.');
     }
 
 }
