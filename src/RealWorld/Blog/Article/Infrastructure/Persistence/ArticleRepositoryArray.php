@@ -6,6 +6,7 @@ namespace RealWorld\Blog\Article\Infrastructure\Persistence;
 
 use RealWorld\Blog\Article\Domain\Article;
 use RealWorld\Blog\Article\Domain\ArticleSlug;
+use RealWorld\Blog\Article\Domain\ArticleRepository;
 use function Lambdish\phunctional\first;
 use function Lambdish\Phunctional\filter;
 
