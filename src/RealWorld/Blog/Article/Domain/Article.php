@@ -4,8 +4,14 @@ declare(strict_types = 1);
 
 namespace RealWorld\Blog\Article\Domain;
 
+use RealWorld\Blog\ArticleAuthor\Domain\ArticleAuthorId;
+
+
 final class Article
 {
+
+    /** @var ArticleId */
+    protected $id;
 
     /** @var string */
     protected $slug;
@@ -25,19 +31,45 @@ final class Article
     /** @var bool */
     protected $favorited;
 
-    /** @var Profile */
-    protected $author;
+    /** @var ArticleAuthorId */
+    protected $authorId;
 
-    public function __construct(   
+    public function __construct(
+        ArticleId $id,
         string $slug,   
         string $title, 
         string $description,
-        string $body
+        string $body,
+        ArticleAuthorId $authorId
     ) {
+        $this->id = $id;
         $this->slug = $slug;
         $this->title = $title;
         $this->description = $description;
         $this->body = $body;
+        $this->authorId = $authorId;
+    }
+
+    public static function create(
+        ArticleId $id, 
+        $slug, 
+        $title, 
+        $description, 
+        $body, 
+        ArticleAuthorId $authorId
+    ): self 
+    {
+        return new self($id, $slug, $title, $description, $body, $authorId);
+    }
+    
+    public function getId(): ArticleId
+    {
+        return $this->id;
+    }
+    
+    public function getSlug(): string
+    {
+        return $this->slug;
     }
 
     public function getTitle(): string
@@ -53,11 +85,6 @@ final class Article
     public function getBody(): string
     {
         return $this->body;
-    }
-
-    public function setTags(TagCollection $tags): void
-    {
-        $this->tags = $tags;
     }
 
     public function getTags(): TagCollection
@@ -78,21 +105,6 @@ final class Article
     public function isFavorited(): bool
     {
         return $this->favorited;
-    }
-
-    public function setAuthor(Profile $author): void
-    {
-        $this->author = $author;
-    } 
-
-    public function getAuthor(): Profile
-    {
-        return $this->author;
-    }
-
-    public function getSlug(): string
-    {
-        return $this->slug;
     }
 
 }

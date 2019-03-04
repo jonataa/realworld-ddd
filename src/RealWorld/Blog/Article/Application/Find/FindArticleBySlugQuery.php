@@ -9,15 +9,15 @@ use RealWorld\Shared\Domain\Bus\Query\Query;
 final class FindArticleBySlugQuery implements Query
 {
 
-    /** @var ArticleSlug */
+    /** @var string */
     private $slug;
 
-    public function __construct(ArticleSlug $slug)
+    public function __construct(string $slug)
     {
         $this->slug = $slug;
     }
 
-    public function slug(): ArticleSlug
+    public function slug(): string
     {
         return $this->slug;
     }

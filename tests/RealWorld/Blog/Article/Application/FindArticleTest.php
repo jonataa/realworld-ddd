@@ -9,6 +9,8 @@ use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQueryHandler;
 use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQuery;
 use RealWorld\Blog\Article\Application\Find\ArticleFinder;
 use RealWorld\Blog\Article\Infrastructure\Persistence\ArticleRepositoryArray;
+use RealWorld\Blog\Article\Domain\ArticleId;
+use RealWorld\Blog\ArticleAuthor\Domain\ArticleAuthorId;
 
 class FindArticleTest extends UnitTestCase
 {
@@ -19,17 +21,21 @@ class FindArticleTest extends UnitTestCase
     public function setUp()
     {
         $fooBarArticle = ArticleFactory::createFromArray([
+            'id' => ArticleId::random()->value(),
             'slug' => 'foobar',
             'title' => 'Foo Bar', 
             'description' => 'Foo bar description.', 
             'body' => 'Foo bar long text.',
+            'authorId' => ArticleAuthorId::random()->value(),
         ]);
 
         $fizzBuzzArticle = ArticleFactory::createFromArray([
+            'id' => ArticleId::random()->value(),
             'slug' => 'fizzbuzz',
             'title' => 'Fizz Buzz', 
             'description' => 'Fizz buzz description.', 
             'body' => 'Fizz buzz long text.',
+            'authorId' => ArticleAuthorId::random()->value(),
         ]);
         
         $repository = new ArticleRepositoryArray([$fooBarArticle, $fizzBuzzArticle]);
@@ -41,9 +47,7 @@ class FindArticleTest extends UnitTestCase
 
     public function testGetFooBarArticleBySlug()
     {
-        $slug = new ArticleSlug('foobar');
-
-        $query = new FindArticleBySlugQuery($slug);
+        $query = new FindArticleBySlugQuery('foobar');
 
         $article = $this->ask($query, $this->query);
 
@@ -56,9 +60,7 @@ class FindArticleTest extends UnitTestCase
 
     public function testGetFizzBuzzArticleBySlug()
     {
-        $slug = new ArticleSlug('fizzbuzz');
-
-        $query = new FindArticleBySlugQuery($slug);
+        $query = new FindArticleBySlugQuery('fizzbuzz');
 
         $article = $this->ask($query, $this->query);
 
@@ -73,9 +75,7 @@ class FindArticleTest extends UnitTestCase
     {
         $this->expectException(ArticleNotFoundException::class);
         
-        $slug = new ArticleSlug('article-not-found');
-
-        $query = new FindArticleBySlugQuery($slug);
+        $query = new FindArticleBySlugQuery('article-not-found');
 
         $article = $this->ask($query, $this->query);
 

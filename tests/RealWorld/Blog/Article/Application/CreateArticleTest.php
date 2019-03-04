@@ -10,6 +10,9 @@ use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQueryHandler;
 use RealWorld\Blog\Article\Application\Find\ArticleFinder;
 use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQuery;
 use RealWorld\Blog\Article\Domain\ArticleSlug;
+use RealWorld\Blog\Article\Domain\ArticleId;
+use RealWorld\Shared\Domain\ValueObject\Uuid;
+use RealWorld\Blog\ArticleAuthor\Domain\ArticleAuthorId;
 
 class CreateArticleTest extends UnitTestCase
 {
@@ -37,27 +40,32 @@ class CreateArticleTest extends UnitTestCase
 
   public function testCreateNewArticle()
   {
-    $slug = new ArticleSlug('foo');
+    $commandId = Uuid::random();
 
-    $newArticle = ArticleFactory::createFromArray([
-      'slug' => $slug->slug(),
-      'title' => 'Foo Bar', 
-      'description' => 'Foo bar description.', 
-      'body' => 'Foo bar long text.',
-    ]);
+    $id = ArticleId::random()->value();    
+    $authorId = ArticleAuthorId::random()->value();
 
-    $command = new CreateArticleCommand($newArticle);
+    $command = new CreateArticleCommand(
+      $commandId,
+      $id,
+      'foobar',
+      'Foo Bar',
+      'Foo bar description.',
+      'Foo bar long text.',
+      $authorId
+    );
 
     $this->dispatch($command, $this->handler);
 
-    $query = new FindArticleBySlugQuery($slug);
+    $query = new FindArticleBySlugQuery('foobar');
 
     $article = $this->ask($query, $this->query);
 
-    $this->assertEquals($newArticle->getSlug(), $article->getSlug());
-    $this->assertEquals($newArticle->getTitle(), $article->getTitle());
-    $this->assertEquals($newArticle->getDescription(), $article->getDescription());
-    $this->assertEquals($newArticle->getBody(), $article->getBody());
+    $this->assertEquals($command->id(), $article->getId());
+    $this->assertEquals($command->slug(), $article->getSlug());
+    $this->assertEquals($command->title(), $article->getTitle());
+    $this->assertEquals($command->description(), $article->getDescription());
+    $this->assertEquals($command->body(), $article->getBody());
   }
 
 }

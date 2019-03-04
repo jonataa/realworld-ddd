@@ -5,20 +5,21 @@ declare(strict_types = 1);
 namespace RealWorld\Blog\Article\Domain;
 
 use RealWorld\Blog\Article\Domain\Article;
+use RealWorld\Blog\ArticleAuthor\Domain\ArticleAuthorId;
 
 final class ArticleFactory
 {
 
   public static function createFromArray(array $data): Article
   {
-    $article = new Article(
-      $data['slug'], 
-      $data['title'], 
-      $data['description'], 
-      $data['body']
+    return new Article(
+      new ArticleId($data['id']),
+      $data['slug'],
+      $data['title'],
+      $data['description'],
+      $data['body'],
+      new ArticleAuthorId($data['authorId'])
     );
-
-    return $article;
   }
 
 }

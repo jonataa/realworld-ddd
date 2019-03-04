@@ -6,6 +6,8 @@ namespace RealWorld\Blog\Article\Application\Create;
 
 use RealWorld\Blog\Article\Domain\ArticleRepository;
 use RealWorld\Blog\Article\Domain\Article;
+use RealWorld\Blog\Article\Domain\ArticleId;
+use RealWorld\Blog\ArticleAuthor\Domain\ArticleAuthorId;
 
 final class ArticleCreator
 {
@@ -17,8 +19,10 @@ final class ArticleCreator
     $this->repository = $repository;
   }
 
-  public function __invoke(Article $article): void
+  public function create(ArticleId $id, $slug, $title, $description, $body, ArticleAuthorId $authorId): void
   {
+    $article = Article::create($id, $slug, $title, $description, $body, $authorId);
+
     $this->repository->save($article);
   }
 

@@ -31,7 +31,7 @@ final class ArticleFinder
     */  
     public function __invoke(FindArticleBySlugQuery $query): ?Article
     {
-        $slug = $query->slug();
+        $slug = new ArticleSlug($query->slug());
         
         $article = $this->repository->searchBySlug($slug);
         

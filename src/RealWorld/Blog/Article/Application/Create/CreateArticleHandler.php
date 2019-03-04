@@ -4,12 +4,13 @@ declare(strict_types = 1);
 
 namespace RealWorld\Blog\Article\Application\Create;
 
-use function Lambdish\Phunctional\apply;
+use RealWorld\Blog\ArticleAuthor\Domain\ArticleAuthorId;
+use RealWorld\Blog\Article\Domain\ArticleId;
 
 final class CreateArticleHandler
 {
 
-  /** @var callable */
+  /** @var ArticleCreator */
   private $creator;
 
   public function __construct(ArticleCreator $creator)
@@ -18,8 +19,15 @@ final class CreateArticleHandler
   }
 
   public function __invoke(CreateArticleCommand $command): void
-  {
-    apply($this->creator, [$command->article()]);
+  { 
+    $id          = new ArticleId($command->id());
+    $slug        = $command->slug();
+    $title       = $command->title();
+    $description = $command->description();
+    $body        = $command->body();
+    $authorId    = new ArticleAuthorId($command->authorId());
+    
+    $this->creator->create($id, $slug, $title, $description, $body, $authorId);
   }
 
 }
