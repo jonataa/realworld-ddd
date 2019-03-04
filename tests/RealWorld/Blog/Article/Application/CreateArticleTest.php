@@ -1,7 +1,6 @@
 <?php
 
 use Test\RealWorld\Shared\Infrastructure\PHPUnit\UnitTestCase;
-use RealWorld\Blog\Article\Domain\ArticleFactory;
 use RealWorld\Blog\Article\Infrastructure\Persistence\ArticleRepositoryArray;
 use RealWorld\Blog\Article\Application\Create\ArticleCreator;
 use RealWorld\Blog\Article\Application\Create\CreateArticleHandler;
@@ -9,7 +8,6 @@ use RealWorld\Blog\Article\Application\Create\CreateArticleCommand;
 use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQueryHandler;
 use RealWorld\Blog\Article\Application\Find\ArticleFinder;
 use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQuery;
-use RealWorld\Blog\Article\Domain\ArticleSlug;
 use RealWorld\Blog\Article\Domain\ArticleId;
 use RealWorld\Shared\Domain\ValueObject\Uuid;
 use RealWorld\Blog\ArticleAuthor\Domain\ArticleAuthorId;
@@ -44,16 +42,12 @@ class CreateArticleTest extends UnitTestCase
 
     $id = ArticleId::random()->value();    
     $authorId = ArticleAuthorId::random()->value();
+    $slug = 'foobar';
+    $title = 'Foo Bar';
+    $description = 'Foo bar description.';
+    $body = 'Foo bar long text.';
 
-    $command = new CreateArticleCommand(
-      $commandId,
-      $id,
-      'foobar',
-      'Foo Bar',
-      'Foo bar description.',
-      'Foo bar long text.',
-      $authorId
-    );
+    $command = new CreateArticleCommand($commandId, $id, $slug, $title, $description, $body, $authorId);
 
     $this->dispatch($command, $this->handler);
 
@@ -61,11 +55,11 @@ class CreateArticleTest extends UnitTestCase
 
     $article = $this->ask($query, $this->query);
 
-    $this->assertEquals($command->id(), $article->getId());
-    $this->assertEquals($command->slug(), $article->getSlug());
-    $this->assertEquals($command->title(), $article->getTitle());
-    $this->assertEquals($command->description(), $article->getDescription());
-    $this->assertEquals($command->body(), $article->getBody());
+    $this->assertEquals($command->id(), $article->id());
+    $this->assertEquals($command->slug(), $article->slug());
+    $this->assertEquals($command->title(), $article->title());
+    $this->assertEquals($command->description(), $article->description());
+    $this->assertEquals($command->body(), $article->body());
   }
 
 }

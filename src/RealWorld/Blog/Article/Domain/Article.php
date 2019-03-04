@@ -6,7 +6,6 @@ namespace RealWorld\Blog\Article\Domain;
 
 use RealWorld\Blog\ArticleAuthor\Domain\ArticleAuthorId;
 
-
 final class Article
 {
 
@@ -62,32 +61,32 @@ final class Article
         return new self($id, $slug, $title, $description, $body, $authorId);
     }
     
-    public function getId(): ArticleId
+    public function id(): ArticleId
     {
         return $this->id;
     }
     
-    public function getSlug(): string
+    public function slug(): string
     {
         return $this->slug;
     }
 
-    public function getTitle(): string
+    public function title(): string
     {
         return $this->title;
     }
 
-    public function getDescription(): string
+    public function description(): string
     {
         return $this->description;
     }
 
-    public function getBody(): string
+    public function body(): string
     {
         return $this->body;
     }
 
-    public function getTags(): TagCollection
+    public function tags(): TagCollection
     {
         return $this->tags;
     }

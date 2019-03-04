@@ -4,7 +4,6 @@ use Test\RealWorld\Shared\Infrastructure\PHPUnit\UnitTestCase;
 use RealWorld\Blog\Article\Domain\ArticleFactory;
 use RealWorld\Blog\Article\Domain\Article;
 use RealWorld\Blog\Article\Domain\Exceptions\ArticleNotFoundException;
-use RealWorld\Blog\Article\Domain\ArticleSlug;
 use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQueryHandler;
 use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQuery;
 use RealWorld\Blog\Article\Application\Find\ArticleFinder;
@@ -52,10 +51,10 @@ class FindArticleTest extends UnitTestCase
         $article = $this->ask($query, $this->query);
 
         $this->assertInstanceOf(Article::class, $article);
-        $this->assertEquals($article->getTitle(), 'Foo Bar');
-        $this->assertEquals($article->getSlug(), 'foobar');
-        $this->assertEquals($article->getDescription(), 'Foo bar description.');
-        $this->assertEquals($article->getBody(), 'Foo bar long text.');
+        $this->assertEquals($article->title(), 'Foo Bar');
+        $this->assertEquals($article->slug(), 'foobar');
+        $this->assertEquals($article->description(), 'Foo bar description.');
+        $this->assertEquals($article->body(), 'Foo bar long text.');
     }
 
     public function testGetFizzBuzzArticleBySlug()
@@ -65,10 +64,10 @@ class FindArticleTest extends UnitTestCase
         $article = $this->ask($query, $this->query);
 
         $this->assertInstanceOf(Article::class, $article);
-        $this->assertEquals($article->getTitle(), 'Fizz Buzz');
-        $this->assertEquals($article->getSlug(), 'fizzbuzz');
-        $this->assertEquals($article->getDescription(), 'Fizz buzz description.');
-        $this->assertEquals($article->getBody(), 'Fizz buzz long text.');
+        $this->assertEquals($article->title(), 'Fizz Buzz');
+        $this->assertEquals($article->slug(), 'fizzbuzz');
+        $this->assertEquals($article->description(), 'Fizz buzz description.');
+        $this->assertEquals($article->body(), 'Fizz buzz long text.');
     }
 
     public function testGetArticleNotFoundBySlug()    
