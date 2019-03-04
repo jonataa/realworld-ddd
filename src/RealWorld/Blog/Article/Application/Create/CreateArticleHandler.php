@@ -9,7 +9,7 @@ use function Lambdish\Phunctional\apply;
 final class CreateArticleHandler
 {
 
-  /** @var ArticleCreator */
+  /** @var callable */
   private $creator;
 
   public function __construct(ArticleCreator $creator)

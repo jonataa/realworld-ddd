@@ -14,10 +14,10 @@ use RealWorld\Blog\Article\Domain\ArticleSlug;
 class CreateArticleTest extends UnitTestCase
 {
   
-  /** @var CreateArticleHandler */
+  /** @var callable */
   private $handler;
 
-  /** @var FindArticleBySlugQueryHandler */
+  /** @var callable */
   private $query;
 
   public function setUp()
