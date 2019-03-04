@@ -49,7 +49,7 @@ class CreateArticleTest extends UnitTestCase
 
     $query = new FindArticleBySlugQuery($slug);
 
-    $this->ask($query, $this->query);
+    $article = $this->ask($query, $this->query);
 
     $this->assertEquals($newArticle->getSlug(), $article->getSlug());
     $this->assertEquals($newArticle->getTitle(), $article->getTitle());
