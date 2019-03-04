@@ -29,5 +29,10 @@ class ArticleRepositoryArray implements ArticleRepository
         
         return first($filtered);
     }
+
+    public function save(Article $article): void
+    {
+        $this->rows[] = $article;
+    }
     
 }

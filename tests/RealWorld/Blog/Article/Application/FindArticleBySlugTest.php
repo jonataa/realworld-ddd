@@ -44,9 +44,9 @@ class FindArticleBySlugTest extends TestCase
     {
         $slug = new ArticleSlug('foobar');
 
-        $command = new FindArticleBySlugQuery($slug);
+        $query = new FindArticleBySlugQuery($slug);
 
-        $article = $this->query->handle($command);
+        $article = $this->query->handle($query);
 
         $this->assertInstanceOf(Article::class, $article);
         $this->assertEquals($article->getTitle(), 'Foo Bar');
@@ -59,9 +59,9 @@ class FindArticleBySlugTest extends TestCase
     {
         $slug = new ArticleSlug('fizzbuzz');
 
-        $command = new FindArticleBySlugQuery($slug);
+        $query = new FindArticleBySlugQuery($slug);
 
-        $article = $this->query->handle($command);
+        $article = $this->query->handle($query);
 
         $this->assertInstanceOf(Article::class, $article);
         $this->assertEquals($article->getTitle(), 'Fizz Buzz');
@@ -76,9 +76,9 @@ class FindArticleBySlugTest extends TestCase
         
         $slug = new ArticleSlug('article-not-found');
 
-        $command = new FindArticleBySlugQuery($slug);
+        $query = new FindArticleBySlugQuery($slug);
 
-        $article = $this->query->handle($command);
+        $article = $this->query->handle($query);
 
         $this->assertNull($article);
     }
