@@ -21,7 +21,7 @@ class ArticleRepositoryArray implements ArticleRepository
         $this->rows = $rows;
     }
     
-    public function findOneBySlug(ArticleSlug $slug): ?Article
+    public function searchBySlug(ArticleSlug $slug): ?Article
     {
         $filtered = filter(function($article) use ($slug) {
             return $slug->slug() === $article->getSlug();

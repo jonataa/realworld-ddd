@@ -12,9 +12,7 @@ class ArticleNotFoundException extends Exception
     
     public function __construct(ArticleSlug $slug)
     {
-        parent::__construct(sprintf(
-            'article <%s> not found', $slug->slug()
-        ));
+        parent::__construct(sprintf('The article <%s> not found', $slug->slug()));
     }
     
 }

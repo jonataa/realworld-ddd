@@ -33,7 +33,7 @@ final class ArticleFinder
     {
         $slug = $query->slug();
         
-        $article = $this->repository->findOneBySlug($slug);
+        $article = $this->repository->searchBySlug($slug);
         
         $this->ensureArticleExists($slug, $article);
         

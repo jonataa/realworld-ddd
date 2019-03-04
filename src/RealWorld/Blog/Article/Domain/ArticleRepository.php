@@ -10,6 +10,6 @@ use RealWorld\Blog\Article\Domain\ArticleSlug;
 interface ArticleRepository
 {
 
-    public function findOneBySlug(ArticleSlug $slug): ?Article;
+    public function searchBySlug(ArticleSlug $slug): ?Article;
 
 }
