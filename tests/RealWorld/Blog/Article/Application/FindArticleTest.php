@@ -13,7 +13,7 @@ use RealWorld\Blog\Article\Infrastructure\Persistence\ArticleRepositoryArray;
 class FindArticleTest extends UnitTestCase
 {
 
-    /** @var FindArticleBySlugQueryHandler */
+    /** @var callable */
     protected $query;
 
     public function setUp()

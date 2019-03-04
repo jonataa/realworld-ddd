@@ -5,9 +5,10 @@ declare(strict_types = 1);
 namespace RealWorld\Blog\Article\Application\Find;
 
 use RealWorld\Blog\Article\Domain\Article;
+use RealWorld\Shared\Domain\Bus\Query\Query;
 use function Lambdish\Phunctional\apply;
 
-final class FindArticleBySlugQueryHandler
+final class FindArticleBySlugQueryHandler implements Query
 {
 
     protected $finder;

@@ -6,7 +6,6 @@ namespace RealWorld\Blog\Article\Application\Find;
 
 use RealWorld\Blog\Article\Domain\ArticleSlug;
 use RealWorld\Shared\Domain\Bus\Query\Query;
-
 final class FindArticleBySlugQuery implements Query
 {
 
