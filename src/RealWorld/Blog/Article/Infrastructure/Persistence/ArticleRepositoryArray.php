@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace RealWorld\Article\Infrastructure\Repository;
+namespace RealWorld\Blog\Article\Infrastructure\Persistence;
 
-use RealWorld\Article\Domain\Entities\Article;
-use RealWorld\Article\Domain\ArticleSlug;
+use RealWorld\Blog\Article\Domain\Article;
+use RealWorld\Blog\Article\Domain\ArticleSlug;
 use function Lambdish\phunctional\first;
 use function Lambdish\Phunctional\filter;
 
-class ArticleArrayRepository implements ArticleRepository
+class ArticleRepositoryArray implements ArticleRepository
 {
     
     /** @var Article[] */
@@ -23,7 +23,7 @@ class ArticleArrayRepository implements ArticleRepository
     public function findOneBySlug(ArticleSlug $slug): ?Article
     {
         $filtered = filter(function($article) use ($slug) {
-            return $article->getSlug() === $slug->slug();
+            return $slug->slug() === $article->getSlug();
         }, $this->rows);
         
         return first($filtered);

@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace RealWorld\Article\Domain;
+namespace RealWorld\Blog\Article\Domain;
 
-use RealWorld\Article\Domain\Entities\Article;
+use RealWorld\Blog\Article\Domain\Article;
 
 final class ArticleFactory
 {

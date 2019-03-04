@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace RealWorld\Article\Domain;
+namespace RealWorld\Blog\Article\Domain;
 
 final class ArticleSlug
 {

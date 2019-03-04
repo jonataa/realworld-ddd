@@ -2,15 +2,15 @@
 
 declare(strict_types = 1);
 
-namespace RealWorld\Article\Domain\Entities;
+namespace RealWorld\Blog\Article\Domain;
 
 final class TagCollection
 {
 
-    /** @var array<string> */
+    /** @var string[] */
     protected $collection = [];
 
-    public function __construct(array $collection)
+    public function __construct($collection)
     {
         $this->collection = $collection;
     }
@@ -29,9 +29,9 @@ final class TagCollection
     /**
      * Get all tags as array of strings.
      *
-     * @return array<string>
+     * @return string[]
      */
-    public function toArray(): array
+    public function toArray()
     {
         return $this->collection;
     }

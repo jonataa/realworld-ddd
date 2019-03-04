@@ -2,21 +2,21 @@
 
 declare(strict_types = 1);
 
-namespace RealWorld\Article\Application\Find;
+namespace RealWorld\Blog\Article\Application\Find;
 
-use RealWorld\Article\Application\Find\FindArticleBySlugQuery;
-use RealWorld\Article\Domain\Exceptions\ArticleNotFoundException;
-use RealWorld\Article\Infrastructure\Repository\ArticleRepository;
-use RealWorld\Article\Domain\Entities\Article;
-use RealWorld\Article\Domain\ArticleSlug;
+use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQuery;
+use RealWorld\Blog\Article\Domain\Exceptions\ArticleNotFoundException;
+use RealWorld\Blog\Article\Infrastructure\Persistence\ArticleRepositoryArray;
+use RealWorld\Blog\Article\Domain\Article;
+use RealWorld\Blog\Article\Domain\ArticleSlug;
 
 final class ArticleFinder
 {
     
-    /** @var ArticleRepository */
+    /** @var ArticleRepositoryArray */
     private $repository;
     
-    public function __construct(ArticleRepository $repository)
+    public function __construct(ArticleRepositoryArray $repository)
     {
         $this->repository = $repository;
     }

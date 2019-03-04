@@ -2,18 +2,19 @@
 
 use PHPUnit\Framework\TestCase;
 
-use RealWorld\Article\Domain\ArticleFactory;
-use RealWorld\Article\Domain\Entities\Article;
-use RealWorld\Article\Domain\Exceptions\ArticleNotFoundException;
-use RealWorld\Article\Domain\ArticleSlug;
-use RealWorld\Article\Application\Find\FindArticleBySlugQueryHandler;
-use RealWorld\Article\Application\Find\FindArticleBySlugQuery;
-use RealWorld\Article\Application\Find\ArticleFinder;
-use RealWorld\Article\Infrastructure\Repository\ArticleArrayRepository;
+use RealWorld\Blog\Article\Domain\ArticleFactory;
+use RealWorld\Blog\Article\Domain\Article;
+use RealWorld\Blog\Article\Domain\Exceptions\ArticleNotFoundException;
+use RealWorld\Blog\Article\Domain\ArticleSlug;
+use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQueryHandler;
+use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQuery;
+use RealWorld\Blog\Article\Application\Find\ArticleFinder;
+use RealWorld\Blog\Article\Infrastructure\Persistence\ArticleRepositoryArray;
 
-class GetArticleBySlugTest extends TestCase
+class FindArticleBySlugTest extends TestCase
 {
 
+    /** @var FindArticleBySlugQueryHandler */
     protected $query;
 
     public function setUp()
@@ -30,9 +31,9 @@ class GetArticleBySlugTest extends TestCase
             'title' => 'Fizz Buzz', 
             'description' => 'Fizz buzz description.', 
             'body' => 'Fizz buzz long text.',
-        ]);        
+        ]);
         
-        $repository = new ArticleArrayRepository([$fooBarArticle, $fizzBuzzArticle]);
+        $repository = new ArticleRepositoryArray([$fooBarArticle, $fizzBuzzArticle]);
 
         $finder = new ArticleFinder($repository);
 

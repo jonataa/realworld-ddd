@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace RealWorld\Article\Application\Find;
+namespace RealWorld\Blog\Article\Application\Find;
 
-use RealWorld\Article\Domain\ArticleSlug;
+use RealWorld\Blog\Article\Domain\ArticleSlug;
 
 final class FindArticleBySlugQuery
 {
