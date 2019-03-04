@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe55e39f8af62a85266822928ec24708",
+    "content-hash": "58fc023b3d933592f4c60604b4938b64",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -59,6 +59,60 @@
                 "instantiate"
             ],
             "time": "2017-07-22T11:58:36+00:00"
+        },
+        {
+            "name": "lambdish/phunctional",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lambdish/phunctional.git",
+                "reference": "46fe90f9b2f7eb2c02d077a53ba05fc75396e7ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Lambdish/phunctional/zipball/46fe90f9b2f7eb2c02d077a53ba05fc75396e7ad",
+                "reference": "46fe90f9b2f7eb2c02d077a53ba05fc75396e7ad",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/_bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jorge Ávila",
+                    "email": "avilacardenosa@gmail.com"
+                },
+                {
+                    "name": "Rafa Gómez",
+                    "email": "rgomezcasas@gmail.com"
+                },
+                {
+                    "name": "Eloi Poch",
+                    "email": "eloi.poch@gmail.com"
+                }
+            ],
+            "description": "λ PHP functional library",
+            "keywords": [
+                "functional",
+                "generator",
+                "lambda",
+                "library",
+                "php"
+            ],
+            "time": "2018-10-21T08:21:53+00:00"
         },
         {
             "name": "myclabs/deep-copy",

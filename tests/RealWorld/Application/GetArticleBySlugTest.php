@@ -4,8 +4,11 @@ use PHPUnit\Framework\TestCase;
 
 use RealWorld\Domain\ArticleFactory;
 use RealWorld\Domain\Entities\Article;
-use RealWorld\Application\Query\GetArticleBySlug;
+use RealWorld\Domain\Exceptions\ArticleNotFoundException;
+use RealWorld\Application\Find\FindArticleBySlugQueryHandler;
+use RealWorld\Application\Find\FindArticleBySlugQuery;
 use RealWorld\Infrastructure\Repository\ArticleArrayRepository;
+use RealWorld\Application\Find\ArticleFinder;
 
 class GetArticleBySlugTest extends TestCase
 {
@@ -30,12 +33,16 @@ class GetArticleBySlugTest extends TestCase
         
         $repository = new ArticleArrayRepository([$fooBarArticle, $fizzBuzzArticle]);
 
-        $this->query = new GetArticleBySlug($repository);
+        $finder = new ArticleFinder($repository);
+
+        $this->query = new FindArticleBySlugQueryHandler($finder);
     }
 
     public function testGetFooBarArticleBySlug()
     {
-        $article = $this->query->handle('foobar');
+        $command = new FindArticleBySlugQuery('foobar');
+
+        $article = $this->query->handle($command);
 
         $this->assertInstanceOf(Article::class, $article);
         $this->assertEquals($article->getTitle(), 'Foo Bar');
@@ -46,13 +53,26 @@ class GetArticleBySlugTest extends TestCase
 
     public function testGetFizzBuzzArticleBySlug()
     {
-        $article = $this->query->handle('fizzbuzz');
+        $command = new FindArticleBySlugQuery('fizzbuzz');
+
+        $article = $this->query->handle($command);
 
         $this->assertInstanceOf(Article::class, $article);
         $this->assertEquals($article->getTitle(), 'Fizz Buzz');
         $this->assertEquals($article->getSlug(), 'fizzbuzz');
         $this->assertEquals($article->getDescription(), 'Fizz buzz description.');
         $this->assertEquals($article->getBody(), 'Fizz buzz long text.');
+    }
+
+    public function testGetArticleNotFoundBySlug()    
+    {
+        $this->expectException(ArticleNotFoundException::class);
+        
+        $command = new FindArticleBySlugQuery('article-not-found');
+
+        $article = $this->query->handle($command);
+
+        $this->assertNull($article);
     }
 
 }

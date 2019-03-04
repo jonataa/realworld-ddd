@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace RealWorld\Infrastructure\Repository;
 
 use RealWorld\Domain\Entities\Article;
+use function Lambdish\phunctional\first;
 
-final class ArticleArrayRepository
+class ArticleArrayRepository implements ArticleRepository
 {
 
   /** @var Article[] */
@@ -15,13 +18,13 @@ final class ArticleArrayRepository
     $this->rows = $rows;
   }
 
-  public function findOneBySlug(string $slug): Article
+  public function findOneBySlug(string $slug): ?Article
   {
     $filtered = array_filter($this->rows, function($article) use ($slug) {
       return $article->getSlug() === $slug;
     });
     
-    return current($filtered);
+    return first($filtered);
   }
 
 }

@@ -16,6 +16,7 @@
     "phpstan/phpstan": "^0.10.5"
   },
   "require": {
-    "phpunit/phpunit": "^7.4"
+    "phpunit/phpunit": "^7.4",
+    "lambdish/phunctional": "^1.0"
   }
 }
