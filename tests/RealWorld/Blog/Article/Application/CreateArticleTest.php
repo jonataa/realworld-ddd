@@ -17,6 +17,9 @@ class CreateArticleTest extends UnitTestCase
   /** @var CreateArticleHandler */
   private $handler;
 
+  /** @var FindArticleBySlugQueryHandler */
+  private $query;
+
   public function setUp()
   {
     $empty = [];
