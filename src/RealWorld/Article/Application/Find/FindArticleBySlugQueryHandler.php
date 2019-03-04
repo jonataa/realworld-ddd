@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace RealWorld\Application\Find;
+namespace RealWorld\Article\Application\Find;
 
-use RealWorld\Domain\Entities\Article;
+use RealWorld\Article\Domain\Entities\Article;
 use function Lambdish\Phunctional\apply;
 
 final class FindArticleBySlugQueryHandler

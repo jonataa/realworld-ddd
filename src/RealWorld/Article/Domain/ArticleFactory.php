@@ -1,8 +1,10 @@
 <?php
 
-namespace RealWorld\Domain;
+declare(strict_types = 1);
 
-use RealWorld\Domain\Entities\Article;
+namespace RealWorld\Article\Domain;
+
+use RealWorld\Article\Domain\Entities\Article;
 
 final class ArticleFactory
 {

@@ -1,6 +1,8 @@
 <?php
 
-namespace RealWorld\Domain\Entities;
+declare(strict_types = 1);
+
+namespace RealWorld\Article\Domain\Entities;
 
 final class Profile
 {

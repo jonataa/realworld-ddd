@@ -2,12 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace RealWorld\Application\Find;
+namespace RealWorld\Article\Application\Find;
 
-use RealWorld\Application\Find\FindArticleBySlugQuery;
-use RealWorld\Domain\Exceptions\ArticleNotFoundException;
-use RealWorld\Infrastructure\Repository\ArticleRepository;
-use RealWorld\Domain\Entities\Article;
+use RealWorld\Article\Application\Find\FindArticleBySlugQuery;
+use RealWorld\Article\Domain\Exceptions\ArticleNotFoundException;
+use RealWorld\Article\Infrastructure\Repository\ArticleRepository;
+use RealWorld\Article\Domain\Entities\Article;
+use RealWorld\Article\Domain\ArticleSlug;
 
 final class ArticleFinder
 {
@@ -39,7 +40,7 @@ final class ArticleFinder
         return $article;
     }
     
-    private function ensureArticleExists(string $slug, Article $article = null): void
+    private function ensureArticleExists(ArticleSlug $slug, Article $article = null): void
     {
         if (null === $article) {
             throw new ArticleNotFoundException($slug);
