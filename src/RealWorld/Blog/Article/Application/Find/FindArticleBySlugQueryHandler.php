@@ -17,7 +17,7 @@ final class FindArticleBySlugQueryHandler
         $this->finder = $finder;
     }
 
-    public function handle(FindArticleBySlugQuery $query): Article
+    public function __invoke(FindArticleBySlugQuery $query): Article
     {
         return apply($this->finder, [$query]);
     }

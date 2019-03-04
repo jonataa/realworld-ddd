@@ -1,7 +1,6 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
+use Test\RealWorld\Shared\Infrastructure\PHPUnit\UnitTestCase;
 use RealWorld\Blog\Article\Domain\ArticleFactory;
 use RealWorld\Blog\Article\Domain\Article;
 use RealWorld\Blog\Article\Domain\Exceptions\ArticleNotFoundException;
@@ -11,7 +10,7 @@ use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQuery;
 use RealWorld\Blog\Article\Application\Find\ArticleFinder;
 use RealWorld\Blog\Article\Infrastructure\Persistence\ArticleRepositoryArray;
 
-class FindArticleBySlugTest extends TestCase
+class FindArticleTest extends UnitTestCase
 {
 
     /** @var FindArticleBySlugQueryHandler */
@@ -46,7 +45,7 @@ class FindArticleBySlugTest extends TestCase
 
         $query = new FindArticleBySlugQuery($slug);
 
-        $article = $this->query->handle($query);
+        $article = $this->ask($query, $this->query);
 
         $this->assertInstanceOf(Article::class, $article);
         $this->assertEquals($article->getTitle(), 'Foo Bar');
@@ -61,7 +60,7 @@ class FindArticleBySlugTest extends TestCase
 
         $query = new FindArticleBySlugQuery($slug);
 
-        $article = $this->query->handle($query);
+        $article = $this->ask($query, $this->query);
 
         $this->assertInstanceOf(Article::class, $article);
         $this->assertEquals($article->getTitle(), 'Fizz Buzz');
@@ -78,7 +77,7 @@ class FindArticleBySlugTest extends TestCase
 
         $query = new FindArticleBySlugQuery($slug);
 
-        $article = $this->query->handle($query);
+        $article = $this->ask($query, $this->query);
 
         $this->assertNull($article);
     }

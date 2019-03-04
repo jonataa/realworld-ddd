@@ -9,7 +9,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "RealWorld\\": "src/RealWorld"
+      "RealWorld\\": "src/RealWorld",
+      "Test\\": "tests/"
     }
   },
   "require-dev": {

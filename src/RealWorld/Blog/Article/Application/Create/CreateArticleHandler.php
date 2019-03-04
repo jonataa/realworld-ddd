@@ -17,7 +17,7 @@ final class CreateArticleHandler
     $this->creator = $creator;
   }
 
-  public function handle(CreateArticleCommand $command): void
+  public function __invoke(CreateArticleCommand $command): void
   {
     apply($this->creator, [$command->article()]);
   }

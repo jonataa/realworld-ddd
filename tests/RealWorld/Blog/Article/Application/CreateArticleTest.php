@@ -1,6 +1,6 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+use Test\RealWorld\Shared\Infrastructure\PHPUnit\UnitTestCase;
 use RealWorld\Blog\Article\Domain\ArticleFactory;
 use RealWorld\Blog\Article\Infrastructure\Persistence\ArticleRepositoryArray;
 use RealWorld\Blog\Article\Application\Create\ArticleCreator;
@@ -11,9 +11,10 @@ use RealWorld\Blog\Article\Application\Find\ArticleFinder;
 use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQuery;
 use RealWorld\Blog\Article\Domain\ArticleSlug;
 
-class CreateArticleTest extends TestCase
+class CreateArticleTest extends UnitTestCase
 {
   
+  /** @var CreateArticleHandler */
   private $handler;
 
   public function setUp()
@@ -44,11 +45,11 @@ class CreateArticleTest extends TestCase
 
     $command = new CreateArticleCommand($newArticle);
 
-    $this->handler->handle($command);
+    $this->dispatch($command, $this->handler);
 
     $query = new FindArticleBySlugQuery($slug);
 
-    $article = $this->query->handle($query);
+    $this->ask($query, $this->query);
 
     $this->assertEquals($newArticle->getSlug(), $article->getSlug());
     $this->assertEquals($newArticle->getTitle(), $article->getTitle());
