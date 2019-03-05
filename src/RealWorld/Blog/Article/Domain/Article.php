@@ -86,6 +86,11 @@ final class Article
         return $this->body;
     }
 
+    public function authorId(): ArticleAuthorId
+    {
+        return $this->authorId;
+    }
+
     public function tags(): TagCollection
     {
         return $this->tags;

@@ -23,9 +23,7 @@ class CreateArticleTest extends UnitTestCase
 
   public function setUp()
   {
-    $empty = [];
-
-    $repository = new ArticleRepositoryArray($empty);
+    $repository = new ArticleRepositoryArray([]);
 
     $creator = new ArticleCreator($repository);
 
@@ -38,14 +36,13 @@ class CreateArticleTest extends UnitTestCase
 
   public function testCreateNewArticle()
   {
-    $commandId = Uuid::random();
-
-    $id = ArticleId::random()->value();    
-    $authorId = ArticleAuthorId::random()->value();
-    $slug = 'foobar';
-    $title = 'Foo Bar';
+    $commandId   = Uuid::random();
+    $id          = ArticleId::random()->value();    
+    $authorId    = ArticleAuthorId::random()->value();
+    $slug        = 'foobar';
+    $title       = 'Foo Bar';
     $description = 'Foo bar description.';
-    $body = 'Foo bar long text.';
+    $body        = 'Foo bar long text.';
 
     $command = new CreateArticleCommand($commandId, $id, $slug, $title, $description, $body, $authorId);
 
@@ -60,6 +57,7 @@ class CreateArticleTest extends UnitTestCase
     $this->assertEquals($command->title(), $article->title());
     $this->assertEquals($command->description(), $article->description());
     $this->assertEquals($command->body(), $article->body());
+    $this->assertEquals($command->authorId(), $article->authorId());
   }
 
 }

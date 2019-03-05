@@ -6,7 +6,6 @@ namespace RealWorld\Blog\Article\Application\Find;
 
 use RealWorld\Blog\Article\Domain\Article;
 use RealWorld\Shared\Domain\Bus\Query\Query;
-use function Lambdish\Phunctional\apply;
 
 final class FindArticleBySlugQueryHandler implements Query
 {
@@ -20,7 +19,7 @@ final class FindArticleBySlugQueryHandler implements Query
 
     public function __invoke(FindArticleBySlugQuery $query): Article
     {
-        return apply($this->finder, [$query]);
+        return $this->finder->search($query);
     }
 
 }

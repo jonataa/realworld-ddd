@@ -29,7 +29,7 @@ final class ArticleFinder
     * @param FindArticleBySlugQuery $query
     * @return Article|null
     */  
-    public function __invoke(FindArticleBySlugQuery $query): ?Article
+    public function search(FindArticleBySlugQuery $query): ?Article
     {
         $slug = new ArticleSlug($query->slug());
         
