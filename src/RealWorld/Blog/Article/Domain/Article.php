@@ -5,8 +5,9 @@ declare(strict_types = 1);
 namespace RealWorld\Blog\Article\Domain;
 
 use RealWorld\Blog\ArticleAuthor\Domain\ArticleAuthorId;
+use RealWorld\Shared\Domain\Aggregate\AggregateRoot;
 
-final class Article
+final class Article extends AggregateRoot
 {
 
     /** @var ArticleId */
@@ -57,7 +58,22 @@ final class Article
         ArticleBody $body,
         ArticleAuthorId $authorId
     ): self {
-        return new self($id, $slug, $title, $description, $body, $authorId);
+        $article = new self($id, $slug, $title, $description, $body, $authorId);
+
+        $article->record(
+            new ArticleCreatedDomainEvent(
+                $id->value(),
+                [
+                    'slug' => $slug->value(),
+                    'title' => $title->value(),
+                    'description' => $description->value(),
+                    'body' => $body->value(),
+                    'authorId' => $authorId->value(),
+                ]
+            )
+        );
+
+        return $article;
     }
     
     public function id(): ArticleId

@@ -15,7 +15,10 @@
   "autoload": {
     "psr-4": {
       "RealWorld\\": "src/RealWorld"
-    }
+    },
+    "files": [
+      "src/Shared/utils.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
