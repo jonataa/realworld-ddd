@@ -35,7 +35,7 @@ final class ArticleCreator
     $article = Article::create($id, $slug, $title, $description, $body, $authorId);
 
     $this->repository->save($article);
-    
+
     // TODO: add event dispatch
   }
 
