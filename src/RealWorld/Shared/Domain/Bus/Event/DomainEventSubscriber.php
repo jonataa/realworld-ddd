@@ -6,5 +6,5 @@ namespace RealWorld\Shared\Domain\Bus\Event;
 
 interface DomainEventSubscriber
 {
-    public static function subscribeTo(): array;
+    public static function subscribedTo(): array;
 }

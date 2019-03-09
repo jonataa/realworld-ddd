@@ -6,5 +6,5 @@ namespace RealWorld\Shared\Domain\Bus\Event;
 
 interface DomainEventBus
 {
-    public function notify(DomainEvent $event): void;
+    public function notify(DomainEvent ...$events): void;
 }

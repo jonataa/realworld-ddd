@@ -36,6 +36,19 @@ final class SimpleSyncDomainBusTest extends UnitTestCase
         $this->assertEquals(2, self::$totalTimesCalled);
     }
 
+    /** @test */
+    public function it_should_publish_and_handle_two_events(): void
+    {
+        $events = [
+            new FakeDomainEvent('aggregate id'), 
+            new FakeDomainEvent('aggregate id')
+        ];
+
+        $this->bus->notify(...$events);
+
+        $this->assertEquals(4, self::$totalTimesCalled);
+    }
+
     private function subscriber()
     {
         return new class() implements DomainEventSubscriber
@@ -45,7 +58,7 @@ final class SimpleSyncDomainBusTest extends UnitTestCase
                 SimpleSyncDomainBusTest::$totalTimesCalled++;
             }
 
-            public static function subscribeTo(): array
+            public static function subscribedTo(): array
             {
                 return [FakeDomainEvent::class];
             }

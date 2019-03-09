@@ -8,5 +8,10 @@ use RealWorld\Shared\Domain\Bus\Event\DomainEvent;
 
 final class FakeDomainEvent extends DomainEvent
 {
-    
+
+    public static function eventName(): string
+    {
+        return 'fake_event';
+    }
+
 }

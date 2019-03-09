@@ -34,5 +34,7 @@ abstract class DomainEvent
         $this->eventId = $eventId ?: Uuid::random()->value();
         $this->occurredOn = $occurredOn ?: date_to_string(new DateTimeImmutable);
     }
+    
+    abstract public static function eventName(): string;
 
 }
