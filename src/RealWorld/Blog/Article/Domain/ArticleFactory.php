@@ -14,10 +14,10 @@ final class ArticleFactory
   {
     return new Article(
       new ArticleId($data['id']),
-      $data['slug'],
-      $data['title'],
-      $data['description'],
-      $data['body'],
+      new ArticleSlug($data['slug']),
+      new ArticleTitle($data['title']),
+      new ArticleDescription($data['description']),
+      new ArticleBody($data['body']),
       new ArticleAuthorId($data['authorId'])
     );
   }

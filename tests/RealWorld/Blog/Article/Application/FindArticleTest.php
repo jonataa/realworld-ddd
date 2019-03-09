@@ -1,14 +1,14 @@
 <?php
 
 use Test\RealWorld\Shared\Infrastructure\PHPUnit\UnitTestCase;
-use RealWorld\Blog\Article\Domain\ArticleFactory;
 use RealWorld\Blog\Article\Domain\Article;
-use RealWorld\Blog\Article\Domain\Exceptions\ArticleNotFoundException;
+use RealWorld\Blog\Article\Domain\ArticleId;
+use RealWorld\Blog\Article\Domain\ArticleFactory;
+use RealWorld\Blog\Article\Domain\ArticleSlugNotFound;
 use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQueryHandler;
 use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQuery;
 use RealWorld\Blog\Article\Application\Find\ArticleFinder;
 use RealWorld\Blog\Article\Infrastructure\Persistence\ArticleRepositoryArray;
-use RealWorld\Blog\Article\Domain\ArticleId;
 use RealWorld\Blog\ArticleAuthor\Domain\ArticleAuthorId;
 
 class FindArticleTest extends UnitTestCase
@@ -72,7 +72,7 @@ class FindArticleTest extends UnitTestCase
 
     public function testGetArticleNotFoundBySlug()    
     {
-        $this->expectException(ArticleNotFoundException::class);
+        $this->expectException(ArticleSlugNotFound::class);
         
         $query = new FindArticleBySlugQuery('article-not-found');
 

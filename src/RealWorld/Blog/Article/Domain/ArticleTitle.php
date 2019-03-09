@@ -6,12 +6,6 @@ namespace RealWorld\Blog\Article\Domain;
 
 use RealWorld\Shared\Domain\ValueObject\StringValueObject;
 
-final class ArticleSlug extends StringValueObject
+final class ArticleTitle extends StringValueObject
 {
-
-  public function slug(): string
-  {
-    return $this->value();
-  }
-
 }

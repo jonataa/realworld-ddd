@@ -5,26 +5,26 @@ declare(strict_types = 1);
 namespace RealWorld\Blog\Article\Application\Find;
 
 use RealWorld\Blog\Article\Application\Find\FindArticleBySlugQuery;
-use RealWorld\Blog\Article\Domain\Exceptions\ArticleNotFoundException;
 use RealWorld\Blog\Article\Infrastructure\Persistence\ArticleRepositoryArray;
 use RealWorld\Blog\Article\Domain\Article;
 use RealWorld\Blog\Article\Domain\ArticleSlug;
+use RealWorld\Blog\Article\Domain\ArticleSlugNotFound;
 
 final class ArticleFinder
 {
-    
+
     /** @var ArticleRepositoryArray */
     private $repository;
-    
+
     public function __construct(ArticleRepositoryArray $repository)
     {
         $this->repository = $repository;
     }
-    
+
     /**
     * Finds Article by slug.
     *
-    * @throws ArticleNotFoundException
+    * @throws ArticleSlugNotFound
     * 
     * @param FindArticleBySlugQuery $query
     * @return Article|null
@@ -39,12 +39,12 @@ final class ArticleFinder
         
         return $article;
     }
-    
+
     private function ensureArticleExists(ArticleSlug $slug, Article $article = null): void
     {
         if (null === $article) {
-            throw new ArticleNotFoundException($slug);
+            throw new ArticleSlugNotFound($slug);
         }
     }
-    
+
 }

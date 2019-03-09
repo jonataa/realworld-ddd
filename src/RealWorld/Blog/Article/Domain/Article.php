@@ -12,16 +12,16 @@ final class Article
     /** @var ArticleId */
     protected $id;
 
-    /** @var string */
+    /** @var ArticleSlug */
     protected $slug;
 
-    /** @var string */
+    /** @var ArticleTitle */
     protected $title;
 
-    /** @var string */
+    /** @var ArticleDescription */
     protected $description;
 
-    /** @var string */
+    /** @var ArticleBody */
     protected $body;
 
     /** @var TagCollection */
@@ -35,10 +35,10 @@ final class Article
 
     public function __construct(
         ArticleId $id,
-        string $slug,   
-        string $title, 
-        string $description,
-        string $body,
+        ArticleSlug $slug,   
+        ArticleTitle $title, 
+        ArticleDescription $description,
+        ArticleBody $body,
         ArticleAuthorId $authorId
     ) {
         $this->id = $id;
@@ -51,13 +51,12 @@ final class Article
 
     public static function create(
         ArticleId $id, 
-        $slug, 
-        $title, 
-        $description, 
-        $body, 
+        ArticleSlug $slug, 
+        ArticleTitle $title, 
+        ArticleDescription $description, 
+        ArticleBody $body,
         ArticleAuthorId $authorId
-    ): self 
-    {
+    ): self {
         return new self($id, $slug, $title, $description, $body, $authorId);
     }
     
@@ -66,22 +65,22 @@ final class Article
         return $this->id;
     }
     
-    public function slug(): string
+    public function slug(): ArticleSlug
     {
         return $this->slug;
     }
 
-    public function title(): string
+    public function title(): ArticleTitle
     {
         return $this->title;
     }
 
-    public function description(): string
+    public function description(): ArticleDescription
     {
         return $this->description;
     }
 
-    public function body(): string
+    public function body(): ArticleBody
     {
         return $this->body;
     }
